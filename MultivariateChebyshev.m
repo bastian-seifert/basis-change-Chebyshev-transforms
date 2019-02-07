@@ -156,6 +156,8 @@ replaceWithRecurrenceRelation[indshift_, bndshift_, W_,
   
   tmp[[All, 2]] = 
    List[#] & /@ Assuming[Assumptions, Simplify[tmp[[All, 2]]]];
+   (*if one chebyshev poly appears more than one times*)
+   tmp = {Sum[i[[1]], {i, #}], #[[1, 2]]} & /@ GatherBy[tmp, #[[2]] &];
   (*ind and bound shift become a new member*)
   
   tind = {{1/recurrenceResults[[2, 1, 1]], {indshift, bndshift}}};
